@@ -1,0 +1,1 @@
+# Placeholder for memory/embedding_manager.py
