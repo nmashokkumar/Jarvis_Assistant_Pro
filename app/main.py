@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import asyncio
-from voice.speech_to_text import listen_with_noise_reduction
+from voice.speech_to_text import listen_and_transcribe  # ✅ updated
 from voice.text_to_speech import speak
 from core.response_engine import get_response
 from utils.logger import get_logger
@@ -22,7 +22,7 @@ def main():
 
     while True:
         print("\n[Jarvis] Listening...")
-        user_input = listen_with_noise_reduction()
+        user_input = listen_and_transcribe()  # ✅ changed here
 
         if not user_input:
             logger.warning("No speech detected, continuing to listen.")
@@ -51,6 +51,7 @@ def main():
         print(f"[Jarvis]: {response}")
         logger.info(f"Jarvis response: {response}")
         log_finetune_sample(user_input, corrected_input, response)
+
         # Speak response
         asyncio.run(speak(response))
 
